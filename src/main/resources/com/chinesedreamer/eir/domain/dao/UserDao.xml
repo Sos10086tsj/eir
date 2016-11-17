@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinesedreamer.eir.domain.dao.UserDao">
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_user(username,salt,password,name)
+		values
+		(
+			#{username,jdbcType=VARCHAR},
+			#{salt,jdbcType=VARCHAR},
+			#{password,jdbcType=VARCHAR},
+			#{name,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<update id="update">
+	</update>
+	
+	<sql id="userColumns">
+		id,username,salt,password,name
+	</sql>
+	<resultMap id="userMap" type="com.chinesedreamer.eir.domain.model.User">
+		<id column="id" property="id" jdbcType="BIGINT"/>
+		<result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="salt" property="salt" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <select id="findByUsername" resultMap="userMap">
+    	select <include refid="userColumns"/>
+    	from sys_user where
+    	username = #{username,jdbcType=VARCHAR}
+    </select>
+
+</mapper>
+
+

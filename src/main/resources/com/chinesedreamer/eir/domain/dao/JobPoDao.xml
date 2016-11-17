@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinesedreamer.eir.domain.dao.JobPoDao">
+	
+	<insert id="save">
+		insert into biz_job_po(job_id,po_id,status)
+		values
+		(
+			#{jobId,jdbcType=BIGINT},
+			#{poId,jdbcType=BIGINT},
+			#{status,jdbcType=INTEGER,typeHandler=com.chinesedreamer.eir.domain.typehandler.JobPoStatusTypeHandler}
+		)
+	</insert>
+	
+	<sql id="jobPoDetailColumns">
+		po_id,status,po_name,po_path,po_date
+	</sql>
+	<resultMap id="jobPoDetailMap" type="com.chinesedreamer.eir.domain.model.JobPo">
+		<result column="po_id" property="poId" jdbcType="BIGINT" />
+        <result column="status" property="status" jdbcType="INTEGER" typeHandler="com.chinesedreamer.eir.domain.typehandler.JobPoStatusTypeHandler"/>
+        <result column="po_name" property="poName" jdbcType="VARCHAR" />
+        <result column="po_path" property="poPath" jdbcType="VARCHAR" />
+        <result column="po_date" property="poDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+	
+	<select id="findJobPoDetail" resultMap="jobPoDetailMap">
+		select
+			bjp.po_id as po_id,
+			bjp.status,
+			sef.file_name as po_name,
+			sef.file_path as po_path,
+			sef.upload_date as po_date
+		from 
+			biz_job bj,
+			biz_job_po bjp,
+			supp_eir_file sef
+		where bjp.job_id = bj.id
+			and bjp.po_id = sef.id
+			and bjp.job_id = #{jobId,jdbcType=BIGINT}
+		order by sef.upload_date desc
+	</select>
+
+</mapper>
