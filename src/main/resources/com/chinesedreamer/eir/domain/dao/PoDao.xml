@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinesedreamer.eir.domain.dao.PoDao">
+    
+    <insert id="save">
+    	insert into biz_po
+    	(
+    		po_file_id,
+    		clothing_type,
+    		status,
+    		create_date,
+    		create_user
+    	)
+    	values
+    	(
+    		#{poFileId,jdbcType=BIGINT},
+    		#{clothingType,jdbcType=VARCHAR,typeHandler=com.chinesedreamer.eir.domain.typehandler.ClothingTypeHandler},
+    		#{status,jdbcType=INTEGER,typeHandler=com.chinesedreamer.eir.domain.typehandler.PoStatusTypeHandler},
+    		#{createDate,jdbcType=TIMESTAMP},
+    		#{createUser,jdbcType=BIGINT}
+    	)
+    </insert>
+	
+	<resultMap type="com.chinesedreamer.eir.domain.model.Po" id="poResultMap">
+		<result column="file_name" property="poFileName" jdbcType="VARCHAR" />
+		<result column="file_path" property="poFilePath" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" typeHandler="com.chinesedreamer.eir.domain.typehandler.PoStatusTypeHandler"/>
+		<result column="clothing_type" property="clothingType" jdbcType="VARCHAR" typeHandler="com.chinesedreamer.eir.domain.typehandler.ClothingTypeHandler"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<select id="findPos" resultMap="poResultMap">
+		SELECT
+			sef.file_name ,sef.file_path, bp.status, bp.clothing_type,bp.create_date
+		from
+			biz_po bp,
+			supp_eir_file sef
+		<where>
+			and sef.id = bp.po_file_id
+			and bp.create_user = #{createUser,jdbcType=BIGINT}
+		</where>
+		order by bp.create_date desc
+	</select>
+</mapper>
+
+

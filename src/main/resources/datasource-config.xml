@@ -77,7 +77,7 @@
 				<bean class="com.github.pagehelper.PageHelper">
 					<property name="properties">
 						<value>
-							dialect=oracle
+							dialect=mysql
 							reasonable=true
 						</value>
 					</property>

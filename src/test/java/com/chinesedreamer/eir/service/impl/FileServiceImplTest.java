@@ -28,7 +28,7 @@ public class FileServiceImplTest extends BaseTest{
 	public void testUpdate2UploadFile() {
 		try {
 			MockMultipartFile mockMultipartFile = new MockMultipartFile("tx.png","tx.png",null, new FileInputStream("C:/Users/Paris/Desktop/tx.png"));
-			Long fileId = this.fileService.update2UploadFile(mockMultipartFile);
+			Long fileId = this.fileService.save(mockMultipartFile);
 			assertNotNull(fileId);
 			System.out.println("fileId:" + fileId);
 		} catch (FileNotFoundException e) {

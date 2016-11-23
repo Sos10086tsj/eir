@@ -42,16 +42,12 @@
 			<div class="am-modal-dialog">
 				<div class="am-modal-hd">PO上传</div>
 				<div>
-					<form id="js_po_upload_form" target="js_po_upload_iframe" action="${ctx }/job/test">
+					<form target="js_main_frame" action="${ctx }/po/upload" method="post" enctype="multipart/form-data">
 						<div>
-							<label>工厂</label> <select>
-								<option>佳楠</option>
-								<option>普天母</option>
-							</select>
-							
-							<label>服装类型</label> <select>
-								<option>男装</option>
-								<option>女装</option>
+							<label>服装类型</label> 
+							<select name="clothingType">
+								<option value="BOY">男装</option>
+								<option value="GIRL">女装</option>
 							</select>
 						</div>
 
@@ -60,16 +56,14 @@
 								<button type="button" class="am-btn am-btn-default am-btn-sm">
 									<i class="am-icon-cloud-upload"></i> 选择要上传的文件
 								</button>
-								<input id="doc-form-file" type="file" multiple>
+								<input id="js_po_file_input" type="file" name="file">
 							</div>
-							<div id="file-list"></div>
+							<div id="js_po_file_display"></div>
 						</div>
 						<div class="am-cf"></div>
-						<button type="button" class="am-btn am-btn-default am-btn-xs" onclick="eir.po.uploadPo()">上传</button>
+						<button type="submit" class="am-btn am-btn-default am-btn-xs">上传</button>
 					</form>
 				</div>
-				
-				<iframe id="js_po_upload_iframe" class="am-hide" name="js_po_upload_iframe"></iframe>
 			</div>
 		</div>
 
@@ -77,7 +71,7 @@
 
 	<!-- PO列表 -->
 	<div>
-		<table class="am-table am-table-bordered am-table-radius am-table-striped am-table-striped am-table-hover">
+		<table class="am-table am-table-bordered am-table-radius am-table-striped am-table-striped am-table-hover" id="js_po_table">
 			<thead>
 				<tr>
 					<th>PO文件</th>
@@ -87,17 +81,6 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Head First Design Patterns(英文版).pdf</td>
-					<td>2016-11-22 11:13:12</td>
-					<td>待处理</td>
-					<td>
-						<a>重新处理</a>
-						<a>重新上传</a>
-						<a>删除</a>
-						<a>查看处理结果</a>
-					</td>
-				</tr>
 			</tbody>
 		</table>
 	</div>
@@ -111,5 +94,5 @@ var ctx = '${ctx}';
 </script>
 <script src="${ctx }/resources/component/chance/chance.min.js"></script>
 <script src="${ctx }/resources/js/eir.js"></script>
-<script src="${ctx }/resources/js/job/po.js"></script>
+<script src="${ctx }/resources/js/po/po.js"></script>
 </html>

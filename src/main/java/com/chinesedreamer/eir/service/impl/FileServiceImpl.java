@@ -32,7 +32,7 @@ public class FileServiceImpl implements FileService{
 	private EirFileDao dao;
 	
 	@Override
-	public Long update2UploadFile(MultipartFile file) {
+	public EirFile save(MultipartFile file) {
 		PropertiesUtil pu = new PropertiesUtil(ApplicationConstant.APPLICATION_PROPERTY_FILE);
 		Calendar calendar = Calendar.getInstance();
 		String fileFoler = pu.getProperty(ApplicationConstant.PROPERTY_FILE_UPLOAD_ROOT_KEY)
@@ -66,7 +66,7 @@ public class FileServiceImpl implements FileService{
 		eirFile.setUploadDate(new Date());
 		eirFile.setUploadUser(SessionUtil.getUserId());
 		this.dao.save(eirFile);
-		return eirFile.getId();
+		return eirFile;
 	}
 
 }

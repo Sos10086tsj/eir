@@ -65,7 +65,7 @@ eir.index = {
 				    });
 					
 					//加载第一个菜单
-					eir.loadMenu(ctx + '/job/po');
+					eir.loadMenu(ctx + '/po');
 				}else{
 					alert(respose.errorCode);
 				}
