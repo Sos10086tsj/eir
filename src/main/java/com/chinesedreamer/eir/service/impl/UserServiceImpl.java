@@ -18,6 +18,7 @@ import com.chinesedreamer.eir.exception.user.UsernamePassNotMatchException;
 import com.chinesedreamer.eir.service.UserService;
 import com.chinesedreamer.eir.util.EncryptionUtil;
 import com.chinesedreamer.eir.util.IdUtil;
+import com.chinesedreamer.eir.util.SessionUtil;
 import com.chinesedreamer.eir.util.StringUtil;
 import com.chinesedreamer.eir.vo.model.user.UserPassVo;
 import com.chinesedreamer.eir.vo.model.user.UserProfileVo;
@@ -123,6 +124,7 @@ public class UserServiceImpl implements UserService{
 			this.logger.error("{}",e);
 			throw new UserLoginUnknownException(new ErrorMessage(ErrorMessageCode.SYSTEM.UNEXPECTED_ERROR_MESSAGE_CODE, ErrorMessageCode.SYSTEM.UNEXPECTED_ERROR_MESSAGE_MSG));
 		}
+		SessionUtil.addUserId(user.getId());
 	}
 
 }

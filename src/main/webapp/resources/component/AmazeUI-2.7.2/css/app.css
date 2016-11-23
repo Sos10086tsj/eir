@@ -793,7 +793,7 @@ ul.tpl-dropdown-content li>a.tpl-dropdown-content-message:last-child {
 }
 
 .m-icon-white {
-    background-image: url(../img/syncfusion-icons-white.png);
+    background-image: url(../../../image/syncfusion-icons-white.png);
 }
 
 .dashboard-stat.red .more {

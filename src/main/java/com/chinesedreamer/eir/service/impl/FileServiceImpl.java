@@ -33,7 +33,7 @@ public class FileServiceImpl implements FileService{
 	
 	@Override
 	public Long update2UploadFile(MultipartFile file) {
-		PropertiesUtil pu = new PropertiesUtil("application.properties");
+		PropertiesUtil pu = new PropertiesUtil(ApplicationConstant.APPLICATION_PROPERTY_FILE);
 		Calendar calendar = Calendar.getInstance();
 		String fileFoler = pu.getProperty(ApplicationConstant.PROPERTY_FILE_UPLOAD_ROOT_KEY)
 				+ calendar.get(Calendar.YEAR) + File.separator

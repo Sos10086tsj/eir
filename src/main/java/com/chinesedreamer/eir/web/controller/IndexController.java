@@ -1,6 +1,7 @@
 package com.chinesedreamer.eir.web.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,7 +63,7 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(value = "login" , method = RequestMethod.POST)
-	public String submitLogin(String username, String password, Model model){
+	public String submitLogin(String username, String password, Model model, HttpServletRequest request){
 		try {
 			this.userService.login(username, password);
 			return "redirect:/index";

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@include file="/WEB-INF/jsp/base/baselib.jspf"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -37,6 +37,9 @@
 <!-- 			<div class="login-font"> -->
 <!-- 				<i>Log In </i> or <span> Sign Up</span> -->
 <!-- 			</div> -->
+			<c:if test="${not empty  errorMessage}">
+				<div class="login-font">${errorMessage }</div>
+			</c:if>
 			<div class="am-u-sm-10 login-am-center">
 				<form class="am-form" action="${ctx }/login" method="post">
 					<fieldset>
@@ -59,5 +62,4 @@
 </body>
 <script src="${ctx }/resources/component/jQuery/jquery.min.js"></script>
 <script src="${ctx }/resources/component/AmazeUI-2.7.2/js/amazeui.min.js"></script>
-<script src="${ctx }/resources/component/AmazeUI-2.7.2/js/app.js"></script>
 </html>

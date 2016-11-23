@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinesedreamer.eir.domain.dao.MenuDao">
+	
+	<sql id="menuColumns">
+		id,name,icon_css,url,hierarchy,sequence,parent_id
+	</sql>
+	<resultMap id="menuMap" type="com.chinesedreamer.eir.domain.model.Menu">
+		<id column="id" property="id" jdbcType="BIGINT"/>
+		<result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="icon_css" property="iconCss" jdbcType="VARCHAR" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
+        <result column="hierarchy" property="hierarchy" jdbcType="VARCHAR" />
+        <result column="sequence" property="sequence" jdbcType="INTEGER" />
+        <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    </resultMap>
+    
+    <select id="findUserMenus" resultMap="menuMap">
+    	SELECT 
+    		sm.id,sm.name,sm.icon_css,sm.url,sm.hierarchy,sm.sequence,sm.parent_id
+    	FROM 
+			sys_role sr,
+			sys_role_permission srp,
+			sys_permission sp,
+			sys_menu sm,
+			sys_permission_menu spm,
+			sys_user_role sur
+		where sm.id = spm.menu_id
+			and spm.permission_id = sp.id
+			and srp.permission_id = sp.id
+			and sr.id = srp.role_id
+			and sur.role_id = sr.id
+			and sur.user_id = #{userId,jdbcType=BIGINT}
+			and sm.deleted = 0
+			and sr.deleted = 0
+			and sp.deleted = 0
+			and sm.visible = 1
+			order by sm.hierarchy asc, sm.sequence asc
+    </select>
+
+</mapper>
+
+
