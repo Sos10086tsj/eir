@@ -24,6 +24,31 @@ var eir = {
 		date : function(date,pattern){
 			return (new Date(date)).format(pattern);
 		}
+	},
+	formular : {
+		pageNums : function(currentPage, total, pageSize){
+			if(typeof pageSize == 'undefined'){
+				pageSize = 5;
+			}
+			if(total < pageSize){
+				pageSize = total;
+			}
+			var half = (pageSize - currentPage) / 2;
+			var right = half;
+			var left = half;
+			if(half * 2 < pageSize){
+				left ++;
+			}
+			var startNum = currentPage - left;
+			if(startNum < 1){
+				startNum = 1;
+			}
+			var nums = new Array();
+			for(var i = 0; i < pageSize; i++){
+				nums[i] = startNum + i;
+			}
+			return nums;
+		}
 	}
 }
 $(function () {

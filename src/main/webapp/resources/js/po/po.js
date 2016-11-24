@@ -17,6 +17,27 @@ eir.po={
 					tbody.append(tr);
 				}
 				//刷新分页
+				var pagination = $('#js_po_table_pagination');
+				pagination.empty();
+				var paginationHtml = '<li ';
+				if(result.data.pageNum == 1){
+					paginationHtml += 'class="am-disabled"';
+				}
+				paginationHtml += '"><a href="#">&laquo;</a></li>';
+				var pageNums = eir.formular.pageNums(result.data.pageNum,result.data.total);
+				for(var i in pageNums){
+					if(i == result.data.pageNum){
+						paginationHtml += '<li class="am-active"><a href="#">' + pageNums[i] + '</a></li>';
+					}else{
+						paginationHtml += '<li><a href="#">' + pageNums[i] + '</a></li>';
+					}
+				}
+				if(pageNums.length > result.data.total){
+					paginationHtml += '<li><a href="#">&raquo;</a></li>';
+				}else{
+					paginationHtml += '<li class="am-disabled"><a href="#">&raquo;</a></li>';
+				}
+				pagination.html(paginationHtml);
 			}else{
 				alter("数据加载失败...")
 			}
