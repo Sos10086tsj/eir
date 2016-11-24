@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chinesedreamer.eir.domain.dao.PoDao">
     
-    <insert id="save">
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
     	insert into biz_po
     	(
     		po_file_id,
@@ -22,6 +22,7 @@
     </insert>
 	
 	<resultMap type="com.chinesedreamer.eir.domain.model.Po" id="poResultMap">
+		<id column="id" property="id" jdbcType="BIGINT" />
 		<result column="file_name" property="poFileName" jdbcType="VARCHAR" />
 		<result column="file_path" property="poFilePath" jdbcType="VARCHAR" />
 		<result column="status" property="status" jdbcType="INTEGER" typeHandler="com.chinesedreamer.eir.domain.typehandler.PoStatusTypeHandler"/>
@@ -41,6 +42,23 @@
 		</where>
 		order by bp.create_date desc
 	</select>
+	
+	<select id="findNewPo" resultMap="poResultMap">
+		SELECT
+			sef.file_path,sef.file_name,bp.id
+		from
+			biz_po bp,
+			supp_eir_file sef
+		<where>
+			and sef.id = bp.po_file_id
+			and bp.status = 0
+		</where>
+		order by sef.upload_date limit 1
+	</select>
+	
+	<update id="updatePoStatus">
+		update biz_po set status = #{status,jdbcType=INTEGER} where id = #{id,jdbcType=BIGINT}
+	</update>
 </mapper>
 
 

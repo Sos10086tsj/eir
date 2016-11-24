@@ -35,17 +35,17 @@ public class Zamzar {
 	public static void main(String[] args){
 //		getTarget();
 		
-//		try {
-//			startJob();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			startJob();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-//		try {
-//			checkStatus();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			checkStatus();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		try {
 			download();

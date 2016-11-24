@@ -35,10 +35,11 @@ public class FileServiceImpl implements FileService{
 	public EirFile save(MultipartFile file) {
 		PropertiesUtil pu = new PropertiesUtil(ApplicationConstant.APPLICATION_PROPERTY_FILE);
 		Calendar calendar = Calendar.getInstance();
-		String fileFoler = pu.getProperty(ApplicationConstant.PROPERTY_FILE_UPLOAD_ROOT_KEY)
-				+ calendar.get(Calendar.YEAR) + File.separator
+		String dayFoler = calendar.get(Calendar.YEAR) + File.separator
 				+ (calendar.get(Calendar.MONTH) + 1) + File.separator
 				+ calendar.get(Calendar.DAY_OF_MONTH) + File.separator;
+		String fileFoler = pu.getProperty(ApplicationConstant.PROPERTY_FILE_UPLOAD_ROOT_KEY)
+				+ dayFoler;
 		File folder = new File(fileFoler);
 		if (!folder.exists()) {
 			folder.mkdirs();
@@ -62,7 +63,7 @@ public class FileServiceImpl implements FileService{
 		
 		EirFile eirFile = new EirFile();
 		eirFile.setFileName(file.getOriginalFilename());
-		eirFile.setFilePath(fileFoler + fileName);
+		eirFile.setFilePath(dayFoler + fileName);
 		eirFile.setUploadDate(new Date());
 		eirFile.setUploadUser(SessionUtil.getUserId());
 		this.dao.save(eirFile);

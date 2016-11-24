@@ -6,10 +6,11 @@ package com.chinesedreamer.eir.domain.constant;
 **/
 public enum PoStatus {
 	WAITING_4_PARSE(0,"等待处理"),
-	PARSING(1,"正在处理"),
-	COMPLETED(2,"处理完成"),
-	FAILED(3,"处理失败"),
-	IGNORE(4,"不处理");
+	PARSING(1,"PO解析中"),
+	TRANSFER_FINISHED(2,"PO解析中"),
+	COMPLETED(3,"处理完成"),
+	FAILED(4,"处理失败"),
+	IGNORE(5,"不处理");
 	
 	private final Integer status;
 	private final String description;
