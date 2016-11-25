@@ -22,6 +22,30 @@
 			#{errorMessage,jdbcType=VARCHAR}
 		)
 	</insert>
+	
+	<resultMap type="com.chinesedreamer.eir.domain.model.PoZamzarHistory" id="poZamzarHistoryResultMap">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="po_id" property="poId" jdbcType="BIGINT" />
+		<result column="parse_date" property="parseDate" jdbcType="TIMESTAMP" />
+		<result column="job_id" property="jobId" jdbcType="VARCHAR"/>
+		<result column="response_content" property="responseContent" jdbcType="VARCHAR"/>
+		<result column="success" property="success" jdbcType="BOOLEAN" />
+		<result column="error_message" property="errorMessage" jdbcType="VARCHAR" />
+		<result column="file_downloaded" property="fileDownloaded" jdbcType="BOOLEAN" />
+	</resultMap>
+	
+	<select id="findParsedPos" resultMap="poZamzarHistoryResultMap">
+		select 
+			id,job_id
+		from biz_po_zamzar_history
+		where
+			file_downloaded = 0 and success = 1
+		order by parse_date
+	</select>
+	
+	<update id="updateFileDownloaded">
+		update biz_po_zamzar_history set file_downloaded = 1 where id = #{id,jdbcType=BIGINT}
+	</update>
 </mapper>
 
 

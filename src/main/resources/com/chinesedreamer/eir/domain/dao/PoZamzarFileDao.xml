@@ -7,15 +7,33 @@
 		(
 			history_id,
 			zamzar_file_id,
-			status
+			file_id,
+			create_date
 		)
 		values
 		(
 			#{historyId,jdbcType=BIGINT},
 			#{zamzarFileId,jdbcType=VARCHAR},
-			#{status,jdbcType=INTEGER,typeHandler=com.chinesedreamer.eir.domain.typehandler.PoZamzarFileStatusHandler}
+			#{fileId,jdbcType=BIGINT},
+			#{createDate,jdbcType=TIMESTAMP}
 		)
 	</insert>
+	
+	<resultMap type="com.chinesedreamer.eir.domain.model.PoZamzarFile" id="poZamzarFileResultMap">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="history_id" property="historyId" jdbcType="BIGINT" />
+		<result column="zamzar_file_id" property="zamzarFileId" jdbcType="VARCHAR" />
+		<result column="file_id" property="fileId" jdbcType="BIGINT"/>
+		<result column="create_date" property="downloadDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<sql id="poZamzarFileColumns">
+		id,history_id,zamzar_file_id,file_id,create_date
+	</sql>
+	
+	<select id="findByZamzarFileId" resultMap="poZamzarFileResultMap">
+		select <include refid="poZamzarFileColumns"/> from biz_po_zamzar_file where zamzar_file_id = #{zamzarFileId,jdbcType=VARCHAR}
+	</select>
 </mapper>
 
 

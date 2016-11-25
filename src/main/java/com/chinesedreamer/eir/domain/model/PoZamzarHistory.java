@@ -14,6 +14,7 @@ public class PoZamzarHistory extends BaseModel{
 	private String responseContent;
 	private Boolean success = Boolean.TRUE;
 	private String errorMessage;
+	private Boolean fileDownloaded;
 	public Long getPoId() {
 		return poId;
 	}
@@ -49,6 +50,12 @@ public class PoZamzarHistory extends BaseModel{
 	}
 	public void setJobId(String jobId) {
 		this.jobId = jobId;
+	}
+	public Boolean getFileDownloaded() {
+		return fileDownloaded;
+	}
+	public void setFileDownloaded(Boolean fileDownloaded) {
+		this.fileDownloaded = fileDownloaded;
 	}
 	
 	

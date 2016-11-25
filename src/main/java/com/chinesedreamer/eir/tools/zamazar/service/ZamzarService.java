@@ -1,9 +1,7 @@
 package com.chinesedreamer.eir.tools.zamazar.service;
 
-import java.io.File;
-
+import com.chinesedreamer.eir.domain.model.EirFile;
 import com.chinesedreamer.eir.tools.zamazar.model.ZamzarResponse;
-import com.chinesedreamer.eir.tools.zamazar.model.ZamzarStatus;
 
 /**
  * Description:
@@ -25,12 +23,12 @@ public interface ZamzarService {
 	 * @param fileId
 	 * @return
 	 */
-	public File download(String fileId);
+	public EirFile saveDownloadFile(String fileId,String fileName);
 	
 	/**
 	 * 检查文件状态
-	 * @param fileId
+	 * @param jobId
 	 * @return
 	 */
-	public ZamzarStatus zamzarStatus(String fileId);
+	public ZamzarResponse zamzarStatus(String jobId);
 }

@@ -10,7 +10,7 @@ import java.util.Date;
 public class EirFile extends BaseModel{
 	private String fileName;
 	private String filePath;
-	private Date uploadDate;
+	private Date uploadDate = new Date();
 	private Long uploadUser;
 	public String getFileName() {
 		return fileName;

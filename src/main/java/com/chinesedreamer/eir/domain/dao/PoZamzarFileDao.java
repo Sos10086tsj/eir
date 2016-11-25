@@ -9,4 +9,5 @@ import com.chinesedreamer.eir.domain.model.PoZamzarFile;
 **/
 public interface PoZamzarFileDao {
 	public int save(PoZamzarFile file);
+	public PoZamzarFile findByZamzarFileId(String zamzarFileId);
 }
