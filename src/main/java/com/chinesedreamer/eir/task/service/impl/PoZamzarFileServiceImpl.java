@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONArray;
@@ -36,6 +37,7 @@ public class PoZamzarFileServiceImpl implements PoZamzarFileService{
 	private PoZamzarFileDao poZamzarFileDao;
 
 	@Override
+	@Scheduled(cron="0 0/5 * * * ?")
 	public void update2DownloadFile() {
 		//1. 检查文件状态
 		PageHelper.startPage(1, 10);
@@ -57,7 +59,7 @@ public class PoZamzarFileServiceImpl implements PoZamzarFileService{
 					//判断文件是否已经存在
 					PoZamzarFile exist = this.poZamzarFileDao.findByZamzarFileId(fileId);
 					if (null == exist) {
-						EirFile file = this.zamzarService.saveDownloadFile(fileId, jsonObject.getString("name"));
+						EirFile file = this.zamzarService.saveDownloadFile(fileId);
 						if (null != file.getId()) {
 							PoZamzarFile poZamzarFile = new PoZamzarFile();
 							poZamzarFile.setFileId(file.getId());

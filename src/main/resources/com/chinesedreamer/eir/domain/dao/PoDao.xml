@@ -29,6 +29,18 @@
 		<result column="clothing_type" property="clothingType" jdbcType="VARCHAR" typeHandler="com.chinesedreamer.eir.domain.typehandler.ClothingTypeHandler"/>
 		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
 	</resultMap>
+	
+	<select id="findById" resultMap="poResultMap">
+		SELECT
+			sef.file_name ,sef.file_path, bp.status, bp.clothing_type,bp.create_date
+		from
+			biz_po bp,
+			supp_eir_file sef
+		<where>
+			and sef.id = bp.po_file_id
+			and bp.id = #{id,jdbcType=BIGINT}
+		</where>
+	</select>
 
 	<select id="findPos" resultMap="poResultMap">
 		SELECT
@@ -54,6 +66,35 @@
 			and bp.status = 0
 		</where>
 		order by sef.upload_date limit 1
+	</select>
+	
+	<select id="findNewPoExcels" resultMap="poResultMap">
+		SELECT
+			po.id,sef.file_path,po.clothing_type
+		from
+			(
+				select 
+					distinct pzh.po_id
+				from 
+					biz_po_zamzar_history pzh,
+					biz_po po
+				where 1=1
+					and po.id = pzh.po_id
+					and pzh.file_downloaded = 1
+                    and po.status = 1
+					order by po.id, po.create_date limit 1
+			) t,
+			biz_po po,
+			biz_po_zamzar_history pzh,
+			biz_po_zamzar_file pzf,
+			supp_eir_file sef
+		<where>
+			and po.id = t.po_id
+			and pzh.po_id = po.id
+			and pzf.history_id = pzh.id
+			and sef.id = pzf.file_id
+		</where>
+		order by po.create_date
 	</select>
 	
 	<update id="updatePoStatus">

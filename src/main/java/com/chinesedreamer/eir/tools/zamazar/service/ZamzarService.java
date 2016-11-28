@@ -23,7 +23,7 @@ public interface ZamzarService {
 	 * @param fileId
 	 * @return
 	 */
-	public EirFile saveDownloadFile(String fileId,String fileName);
+	public EirFile saveDownloadFile(String fileId);
 	
 	/**
 	 * 检查文件状态

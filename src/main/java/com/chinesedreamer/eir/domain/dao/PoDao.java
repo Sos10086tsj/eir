@@ -15,6 +15,7 @@ import com.chinesedreamer.eir.vo.query.PoQueryVo;
 public interface PoDao {
 	public int save(Po po);
 	public List<Po> findPos(PoQueryVo queryVo);
+	public Po findById(Long id);
 	
 	/**
 	 * 获取待解析的pdf po
@@ -22,4 +23,9 @@ public interface PoDao {
 	 */
 	public Po findNewPo();
 	public int updatePoStatus(@Param(value="id")Long id, @Param(value="status")Integer status);
+	/**
+	 * 获取待解析的PO EXCEL
+	 * @return
+	 */
+	public List<Po> findNewPoExcels();
 }

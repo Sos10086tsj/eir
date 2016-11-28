@@ -88,7 +88,7 @@ public class ZamzarServiceImpl implements ZamzarService{
 	}
 
 	@Override
-	public EirFile saveDownloadFile(String fileId,String fileName) {
+	public EirFile saveDownloadFile(String fileId) {
 		EirFile file = new EirFile();
 		
 		PropertiesUtil pu = new PropertiesUtil(ApplicationConstant.APPLICATION_PROPERTY_FILE);
@@ -102,12 +102,8 @@ public class ZamzarServiceImpl implements ZamzarService{
 				+ (calendar.get(Calendar.MONTH) + 1) + File.separator
 				+ calendar.get(Calendar.DAY_OF_MONTH) + File.separator;
 		StringBuilder builder = new StringBuilder();
-		builder.append(UUID.randomUUID().toString());
-		int typeIndex = fileName.lastIndexOf(".");
-		if (typeIndex != -1) {
-			builder.append(".")
-			.append(fileName.substring(typeIndex + 1));
-		}
+		builder.append(UUID.randomUUID().toString())
+		.append(".xlsx");
 		String saveFileName = builder.toString();
 		File folder = new File(pu.getProperty(ApplicationConstant.PROPERTY_FILE_UPLOAD_ROOT_KEY) + dayFoler);
 		if (!folder.exists()) {
@@ -129,10 +125,11 @@ public class ZamzarServiceImpl implements ZamzarService{
 			}
 			response.close();
 			httpClient.close();
+			bos.flush();
 			bos.close();
 			bis.close();
 			
-			file.setFileName(fileName);
+			file.setFileName(saveFileName);
 			file.setFilePath(dayFoler + saveFileName);
 			
 			this.eirFileDao.save(file);

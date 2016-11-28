@@ -12,7 +12,7 @@ eir.po={
 						+ '<td>' + po.fileName + '</td>'
 						+ '<td>' + eir.format.date(po.uploadDate,'yyyy-MM-dd') + '</td>'
 						+ '<td>' + po.status + '</td>'
-						+ '<td><a>重新处理</a>  <a>重新上传</a>  <a>删除</a>  <a>查看处理结果</a></td>'
+						+ '<td><a>查看处理结果</a></td>'
 						+ '</tr>';
 					tbody.append(tr);
 				}

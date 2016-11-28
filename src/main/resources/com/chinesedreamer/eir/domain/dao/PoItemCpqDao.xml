@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinesedreamer.eir.domain.dao.PoItemCpqDao">
+    
+	
+	<resultMap type="com.chinesedreamer.eir.domain.model.PoItemCpq" id="poItemCpqResultMap">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="new_style_no" property="newStyleNo" jdbcType="VARCHAR" />
+		<result column="old_style_no" property="oldStyleNo" jdbcType="VARCHAR" />
+		<result column="color" property="color" jdbcType="VARCHAR" />
+		<result column="size_s" property="sizeS" jdbcType="INTEGER" />
+		<result column="size_m" property="sizeM" jdbcType="INTEGER" />
+		<result column="size_l" property="sizeL" jdbcType="INTEGER" />
+		<result column="size_xl" property="sizeXl" jdbcType="INTEGER" />
+		<result column="size_xxl" property="sizeXxl" jdbcType="INTEGER" />
+		<result column="size_p" property="sizeP" jdbcType="INTEGER" />
+		<result column="size_1" property="size1" jdbcType="INTEGER" />
+		<result column="size_2" property="size2" jdbcType="INTEGER" />
+		<result column="size_4" property="size4" jdbcType="INTEGER" />
+		<result column="size_6" property="size6" jdbcType="INTEGER" />
+		<result column="size_8" property="size8" jdbcType="INTEGER" />
+		<result column="size_10" property="size10" jdbcType="INTEGER" />
+		<result column="size_12" property="size12" jdbcType="INTEGER" />
+		<result column="size_14" property="size14" jdbcType="INTEGER" />
+		<result column="size_16" property="size16" jdbcType="INTEGER" />
+		<result column="size_uni_1" property="sizeUni1" jdbcType="INTEGER" />
+		<result column="size_uni_2" property="sizeUni2" jdbcType="INTEGER" />
+		<result column="size_uni_3" property="sizeUni3" jdbcType="INTEGER" />
+		<result column="size_uni_4" property="sizeUni4" jdbcType="INTEGER" />
+		<result column="size_uni_5" property="sizeUni5" jdbcType="INTEGER" />
+		<result column="size_uni_6" property="sizeUni6" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="poItemCpqColumns">
+		id,
+		order_no,
+		new_style_no,
+		old_style_no,
+		color,
+		size_s,
+		size_m,
+		size_l,
+		size_xl,
+		size_xxl,
+		size_p,
+		size_1,
+		size_2,
+		size_3,
+		size_4,
+		size_6,
+		size_8,
+		size_10,
+		size_12,
+		size_14,
+		size_16,
+		size_uni_1,
+		size_uni_2,
+		size_uni_3,
+		size_uni_4,
+		size_uni_5,
+		size_uni_6
+	</sql>
+	
+	<select id="findByOrderAndStyleAndColor" resultMap="poItemCpqResultMap">
+		select <include refid="poItemCpqColumns"/>
+		from biz_po_item_cpq
+		<where>
+			and  order_no = #{orderNo,jdbcType=VARCHAR}
+			and  old_style_no = #{styleNo,jdbcType=VARCHAR}
+			and  color = #{color,jdbcType=VARCHAR}
+		</where>
+	</select>
+	
+	<update id="update">
+		update biz_po_item_cpq
+		<set>
+			size_s = #{sizeS,jdbcType=INTEGER},
+			size_m = #{sizeM,jdbcType=INTEGER},
+			size_l = #{sizeXl,jdbcType=INTEGER},
+			size_xl = #{sizeXl,jdbcType=INTEGER},
+			size_xxl = #{sizeXxl,jdbcType=INTEGER},
+			size_p = #{sizeP,jdbcType=INTEGER},
+			size_1 = #{size1,jdbcType=INTEGER},
+			size_2 = #{size2,jdbcType=INTEGER},
+			size_4 = #{size4,jdbcType=INTEGER},
+			size_6 = #{size6,jdbcType=INTEGER},
+			size_8 = #{size8,jdbcType=INTEGER},
+			size_10 = #{size10,jdbcType=INTEGER},
+			size_12 = #{size12,jdbcType=INTEGER},
+			size_14 = #{size14,jdbcType=INTEGER},
+			size_16 = #{size16,jdbcType=INTEGER},
+			size_uni_1 = #{sizeUni1,jdbcType=INTEGER},
+			size_uni_2 = #{sizeUni2,jdbcType=INTEGER},
+			size_uni_3 = #{sizeUni3,jdbcType=INTEGER},
+			size_uni_4 = #{sizeUni4,jdbcType=INTEGER},
+			size_uni_5 = #{sizeUni5,jdbcType=INTEGER},
+			size_uni_6 = #{sizeUni6,jdbcType=INTEGER}
+		</set>
+		where id = size_s = #{id,jdbcType=BIGINT}
+	</update>
+
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		insert into biz_po_item_cpq
+		(
+			order_no,
+			new_style_no,
+			old_style_no,
+			color,
+			size_s,
+			size_m,
+			size_l,
+			size_xl,
+			size_xxl,
+			size_p,
+			size_1,
+			size_2,
+			size_3,
+			size_4,
+			size_6,
+			size_8,
+			size_10,
+			size_12,
+			size_14,
+			size_16,
+			size_uni_1,
+			size_uni_2,
+			size_uni_3,
+			size_uni_4,
+			size_uni_5,
+			size_uni_6
+		)values(
+			#{orderNo,jdbcType=VARCHAR},
+			#{newStyleNo,jdbcType=VARCHAR},
+			#{oldStyleNo,jdbcType=VARCHAR},
+			#{color,jdbcType=VARCHAR},
+			#{sizeS,jdbcType=INTEGER},
+			#{sizeM,jdbcType=INTEGER},
+			#{sizeL,jdbcType=INTEGER},
+			#{sizeXl,jdbcType=INTEGER},
+			#{sizeXxl,jdbcType=INTEGER},
+			#{sizeP,jdbcType=INTEGER},
+			#{size1,jdbcType=INTEGER},
+			#{size2,jdbcType=INTEGER},
+			#{size3,jdbcType=INTEGER},
+			#{size4,jdbcType=INTEGER},
+			#{size6,jdbcType=INTEGER},
+			#{size8,jdbcType=INTEGER},
+			#{size10,jdbcType=INTEGER},
+			#{size12,jdbcType=INTEGER},
+			#{size14,jdbcType=INTEGER},
+			#{size16,jdbcType=INTEGER},
+			#{sizeUni1,jdbcType=INTEGER},
+			#{sizeUni2,jdbcType=INTEGER},
+			#{sizeUni3,jdbcType=INTEGER},
+			#{sizeUni4,jdbcType=INTEGER},
+			#{sizeUni5,jdbcType=INTEGER},
+			#{sizeUni6,jdbcType=INTEGER}
+		)
+	</insert>
+
+</mapper>
+
+

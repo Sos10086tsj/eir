@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
@@ -32,6 +33,7 @@ public class PoParseServiceImpl implements PoParseService{
 	@Resource
 	private PoZamzarHistoryDao poZamzarHistoryDao;
 	@Override
+	@Scheduled(cron="0 0/5 * * * ?")
 	public void update2ParsePo() {
 		//1. 获取需要解析的po
 		Po newPo = this.poDao.findNewPo();

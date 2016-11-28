@@ -36,7 +36,7 @@
 	
 	<select id="findParsedPos" resultMap="poZamzarHistoryResultMap">
 		select 
-			id,job_id
+			id,job_id,po_id
 		from biz_po_zamzar_history
 		where
 			file_downloaded = 0 and success = 1
