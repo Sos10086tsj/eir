@@ -5,6 +5,7 @@
 	
 	<resultMap type="com.chinesedreamer.eir.domain.model.PoItemCpq" id="poItemCpqResultMap">
 		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="po_id" property="poId" jdbcType="BIGINT" />
 		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
 		<result column="new_style_no" property="newStyleNo" jdbcType="VARCHAR" />
 		<result column="old_style_no" property="oldStyleNo" jdbcType="VARCHAR" />
@@ -34,6 +35,7 @@
 
 	<sql id="poItemCpqColumns">
 		id,
+		po_id,
 		order_no,
 		new_style_no,
 		old_style_no,
@@ -72,9 +74,18 @@
 		</where>
 	</select>
 	
+	<select id="findByPoId" resultMap="poItemCpqResultMap">
+		select <include refid="poItemCpqColumns"/>
+		from biz_po_item_cpq
+		<where>
+			and po_id = #{poId,jdbcType=BIGINT}
+		</where>
+	</select>
+	
 	<update id="update">
 		update biz_po_item_cpq
 		<set>
+			po_id = #{poId,jdbcType=BIGINT},
 			size_s = #{sizeS,jdbcType=INTEGER},
 			size_m = #{sizeM,jdbcType=INTEGER},
 			size_l = #{sizeXl,jdbcType=INTEGER},
@@ -83,6 +94,7 @@
 			size_p = #{sizeP,jdbcType=INTEGER},
 			size_1 = #{size1,jdbcType=INTEGER},
 			size_2 = #{size2,jdbcType=INTEGER},
+			size_3 = #{size3,jdbcType=INTEGER},
 			size_4 = #{size4,jdbcType=INTEGER},
 			size_6 = #{size6,jdbcType=INTEGER},
 			size_8 = #{size8,jdbcType=INTEGER},
@@ -103,6 +115,7 @@
 	<insert id="save" useGeneratedKeys="true" keyProperty="id">
 		insert into biz_po_item_cpq
 		(
+			po_id,
 			order_no,
 			new_style_no,
 			old_style_no,
@@ -130,6 +143,7 @@
 			size_uni_5,
 			size_uni_6
 		)values(
+			#{poId,jdbcType=BIGINT}
 			#{orderNo,jdbcType=VARCHAR},
 			#{newStyleNo,jdbcType=VARCHAR},
 			#{oldStyleNo,jdbcType=VARCHAR},

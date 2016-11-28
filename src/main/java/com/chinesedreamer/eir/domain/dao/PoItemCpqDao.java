@@ -1,5 +1,7 @@
 package com.chinesedreamer.eir.domain.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.chinesedreamer.eir.domain.model.PoItemCpq;
@@ -13,4 +15,5 @@ public interface PoItemCpqDao {
 	public int save(PoItemCpq item);
 	public int update(PoItemCpq item);
 	public PoItemCpq findByOrderAndStyleAndColor(@Param(value="orderNo")String orderNo, @Param(value="styleNo")String styleNo, @Param(value="color")String color);
+	public List<PoItemCpq> findByPoId(Long poId);
 }

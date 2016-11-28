@@ -8,6 +8,7 @@ import java.util.Date;
  * Date:Nov 23, 2016
 **/
 public class PoVo {
+	private Long id;
 	private Long fileId;
 	private String fileName;
 	private String filePath;
@@ -15,6 +16,12 @@ public class PoVo {
 	private String status;
 	private Date uploadDate;
 	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Long getFileId() {
 		return fileId;
 	}

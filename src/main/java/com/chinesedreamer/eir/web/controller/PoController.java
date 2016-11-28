@@ -3,6 +3,7 @@ package com.chinesedreamer.eir.web.controller;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,6 +14,7 @@ import com.chinesedreamer.eir.service.FileService;
 import com.chinesedreamer.eir.service.PoService;
 import com.chinesedreamer.eir.util.ResponseUtil;
 import com.chinesedreamer.eir.util.SessionUtil;
+import com.chinesedreamer.eir.vo.model.po.PoDetailVo;
 import com.chinesedreamer.eir.vo.model.po.PoVo;
 import com.chinesedreamer.eir.vo.query.Pagination;
 import com.chinesedreamer.eir.vo.query.PoQueryVo;
@@ -38,7 +40,7 @@ public class PoController {
 	 */
 	@RequestMapping(value="")
 	public String po(){
-		return "po/po";
+		return "po/list";
 	}
 	
 	@ResponseBody
@@ -48,7 +50,7 @@ public class PoController {
 			queryVo = new PoQueryVo();
 		}
 		queryVo.setCreateUser(SessionUtil.getUserId());
-		Pagination<PoVo> vos = this.poService.findPage(queryVo);
+		Pagination<PoVo> vos = this.poService.findPos(queryVo);
 		return ResponseUtil.success(vos);
 	}
 	
@@ -64,5 +66,24 @@ public class PoController {
 		vo.setFileId(eirFile.getId());
 		this.poService.savePo(vo);
 		return "redirect:/po";
+	}
+	
+	
+	@RequestMapping(value="detail")
+	public String poDetail(){
+		return "po/detail";
+	}
+	
+	/**
+	 * 获取PO item详情
+	 * @param poId
+	 * @param queryVo
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="detail/{poId}")
+	public ResponseVo poDetail(@PathVariable(value="poId")Long poId){
+		PoDetailVo vo = this.poService.findPoDetail(poId);
+		return ResponseUtil.success(vo);
 	}
 }

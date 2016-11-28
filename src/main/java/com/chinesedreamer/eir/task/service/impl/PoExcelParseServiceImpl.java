@@ -44,7 +44,7 @@ public class PoExcelParseServiceImpl implements PoExcelParseService{
 				poId = po.getId();
 			}
 			String filePath = rootPath + po.getPoFilePath();
-			this.eirParseFactory.getInstant(SessionUtil.getEirType()).savePoExcel(filePath);
+			this.eirParseFactory.getInstant(SessionUtil.getEirType()).savePoExcel(poId, filePath);
 		}
 		this.poDao.updatePoStatus(poId, PoStatus.COMPLETED.getStatus());
 	}

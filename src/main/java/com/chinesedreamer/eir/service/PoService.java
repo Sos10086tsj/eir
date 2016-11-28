@@ -1,5 +1,6 @@
 package com.chinesedreamer.eir.service;
 
+import com.chinesedreamer.eir.vo.model.po.PoDetailVo;
 import com.chinesedreamer.eir.vo.model.po.PoVo;
 import com.chinesedreamer.eir.vo.query.Pagination;
 import com.chinesedreamer.eir.vo.query.PoQueryVo;
@@ -11,5 +12,6 @@ import com.chinesedreamer.eir.vo.query.PoQueryVo;
 **/
 public interface PoService {
 	public void savePo(PoVo vo);
-	public Pagination<PoVo> findPage(PoQueryVo queryVo);
+	public Pagination<PoVo> findPos(PoQueryVo queryVo);
+	public PoDetailVo findPoDetail(Long poId);
 }

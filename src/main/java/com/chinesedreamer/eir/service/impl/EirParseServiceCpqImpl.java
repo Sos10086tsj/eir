@@ -40,8 +40,8 @@ public class EirParseServiceCpqImpl implements EirParseService{
 	private PoItemCpqDao poItemCpqDao;
 	
 	@Override
-	public void savePoExcel(String filePath) {
-		List<PoItemCpq> poItems = this.readPo(filePath);
+	public void savePoExcel(Long poId,String filePath) {
+		List<PoItemCpq> poItems = this.readPo(poId,filePath);
 		for (PoItemCpq item : poItems) {
 			if (null == item.getId()) {
 				this.poItemCpqDao.save(item);
@@ -51,7 +51,7 @@ public class EirParseServiceCpqImpl implements EirParseService{
 		}
 	}
 	
-	private List<PoItemCpq> readPo(String filePath) {
+	private List<PoItemCpq> readPo(Long poId,String filePath) {
 		List<PoItemCpq> poItems = new ArrayList<PoItemCpq>();
 		try {
 			List<PoConfig> poParseConfigs = this.poConfigDao.findByTypeAndCategory(ApplicationConstant.PO_CONFIG_TYPE_PO_PARSE, ApplicationConstant.PO_CONFIG_CATEGORY_CPQ_PO);
@@ -82,7 +82,7 @@ public class EirParseServiceCpqImpl implements EirParseService{
 						if (cellValue.replaceAll(" ", "").equalsIgnoreCase(configMap.get(ApplicationConstant.PO_CONFIG_CPQ_PO_KEY_ORDER).replaceAll(" ", ""))) {//开始获取order no
 							for (int l = k+1; l < row.getLastCellNum(); l++) {
 								XSSFCell orderCell = row.getCell(l);
-								String orderCellValue = ExcelUtil.getCellStringValue(orderCell,true);
+								String orderCellValue = ExcelUtil.getCellStringValue(orderCell);
 								if (StringUtils.isNotEmpty(orderCellValue)) {
 									orderNo = orderCellValue;
 									break;
@@ -130,12 +130,13 @@ public class EirParseServiceCpqImpl implements EirParseService{
 					PoItemCpq item = this.poItemCpqDao.findByOrderAndStyleAndColor(orderNo, oldStyleNo, colorCellValue);
 					if (null == item) {
 						item = new PoItemCpq();
+						item.setOrderNo(orderNo);
+						item.setNewStyleNo(newStyleNo);
+						item.setOldStyleNo(oldStyleNo);
+						item.setColor(colorCellValue);
+						
 					}
-					item.setOrderNo(orderNo);
-					item.setNewStyleNo(newStyleNo);
-					item.setOldStyleNo(oldStyleNo);
-					item.setColor(colorCellValue);
-					
+					item.setPoId(poId);
 					for (int l = 1; l < itemRows.size(); l++) {
 						XSSFRow sizeRow = sheet.getRow(itemRows.get(l));
 						XSSFCell sizeCell = sizeRow.getCell(0);
@@ -159,6 +160,8 @@ public class EirParseServiceCpqImpl implements EirParseService{
 							item.setSize1(itemCellValue);
 						}else if (sizeCellValue.equals("size2")) {
 							item.setSize2(itemCellValue);
+						}else if (sizeCellValue.equals("size3")) {
+							item.setSize3(itemCellValue);
 						}else if (sizeCellValue.equals("size4")) {
 							item.setSize4(itemCellValue);
 						}else if (sizeCellValue.equals("size6")) {

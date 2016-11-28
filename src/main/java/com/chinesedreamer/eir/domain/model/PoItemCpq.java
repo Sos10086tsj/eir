@@ -5,7 +5,7 @@ package com.chinesedreamer.eir.domain.model;
  * Date:Nov 25, 2016
 **/
 public class PoItemCpq extends BaseModel{
-
+	private Long poId;
 	private String orderNo;
 	private String newStyleNo;
 	private String oldStyleNo;
@@ -33,6 +33,12 @@ public class PoItemCpq extends BaseModel{
 	private Integer sizeUni5;
 	private Integer sizeUni6;
 	
+	public Long getPoId() {
+		return poId;
+	}
+	public void setPoId(Long poId) {
+		this.poId = poId;
+	}
 	public Integer getSizeM() {
 		return sizeM;
 	}
