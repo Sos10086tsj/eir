@@ -24,6 +24,7 @@ import com.chinesedreamer.eir.domain.model.PoConfig;
 import com.chinesedreamer.eir.domain.model.PoItemCpq;
 import com.chinesedreamer.eir.service.EirParseService;
 import com.chinesedreamer.eir.util.ExcelUtil;
+import com.chinesedreamer.eir.util.StringUtil;
 
 /**
  * Description:
@@ -79,7 +80,7 @@ public class EirParseServiceCpqImpl implements EirParseService{
 						if (StringUtils.isEmpty(cellValue)) {
 							continue;
 						}
-						if (cellValue.replaceAll(" ", "").equalsIgnoreCase(configMap.get(ApplicationConstant.PO_CONFIG_CPQ_PO_KEY_ORDER).replaceAll(" ", ""))) {//开始获取order no
+						if (StringUtil.matchKeyWord(cellValue.replaceAll(" ", ""), configMap.get(ApplicationConstant.PO_CONFIG_CPQ_PO_KEY_ORDER).replaceAll(" ", ""))){//开始获取order no
 							for (int l = k+1; l < row.getLastCellNum(); l++) {
 								XSSFCell orderCell = row.getCell(l);
 								String orderCellValue = ExcelUtil.getCellStringValue(orderCell);
@@ -88,7 +89,7 @@ public class EirParseServiceCpqImpl implements EirParseService{
 									break;
 								}
 							}
-						}else if (cellValue.replaceAll(" ", "").equalsIgnoreCase(configMap.get(ApplicationConstant.PO_CONFIG_CPQ_PO_KEY_NEW_STYLE).replaceAll(" ", ""))) {
+						}else if (StringUtil.matchKeyWord(cellValue.replaceAll(" ", ""), configMap.get(ApplicationConstant.PO_CONFIG_CPQ_PO_KEY_NEW_STYLE).replaceAll(" ", ""))) {
 							for (int l = k+1; l < row.getLastCellNum(); l++) {
 								XSSFCell newStyleCell = row.getCell(l);
 								String newStyleCellValue = ExcelUtil.getCellStringValue(newStyleCell,true);
@@ -97,7 +98,7 @@ public class EirParseServiceCpqImpl implements EirParseService{
 									break;
 								}
 							}
-						}else if (cellValue.replaceAll(" ", "").equalsIgnoreCase(configMap.get(ApplicationConstant.PO_CONFIG_CPQ_PO_KEY_OLD_STYLE).replaceAll(" ", ""))) {
+						}else if (StringUtil.matchKeyWord(cellValue.replaceAll(" ", ""), configMap.get(ApplicationConstant.PO_CONFIG_CPQ_PO_KEY_OLD_STYLE).replaceAll(" ", ""))) {
 							for (int l = k+1; l < row.getLastCellNum(); l++) {
 								XSSFCell oldStyleCell = row.getCell(l);
 								String oldStyleCellValue = ExcelUtil.getCellStringValue(oldStyleCell,true);
@@ -106,7 +107,7 @@ public class EirParseServiceCpqImpl implements EirParseService{
 									break;
 								}
 							}
-						}else if (cellValue.replaceAll(" ", "").equalsIgnoreCase(configMap.get(ApplicationConstant.PO_CONFIG_CPQ_PO_KEY_ITEM_BEGIN).replaceAll(" ", ""))) {
+						}else if (StringUtil.matchKeyWord(cellValue.replaceAll(" ", ""), configMap.get(ApplicationConstant.PO_CONFIG_CPQ_PO_KEY_ITEM_BEGIN).replaceAll(" ", ""))) {
 							itemStart = true;
 							itemRows.add(j + 1);
 						}
