@@ -44,7 +44,7 @@
 
 	<select id="findPos" resultMap="poResultMap">
 		SELECT
-			sef.file_name ,sef.file_path, bp.status, bp.clothing_type,bp.create_date
+			bp.id,sef.file_name ,sef.file_path, bp.status, bp.clothing_type,bp.create_date
 		from
 			biz_po bp,
 			supp_eir_file sef

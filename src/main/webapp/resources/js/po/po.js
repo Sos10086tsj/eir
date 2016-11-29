@@ -12,7 +12,7 @@ eir.po={
 						+ '<td>' + po.fileName + '</td>'
 						+ '<td>' + eir.format.date(po.uploadDate,'yyyy-MM-dd') + '</td>'
 						+ '<td>' + po.status + '</td>'
-						+ '<td><a>查看处理结果</a></td>'
+						+ '<td><a href="' + ctx + '/po/detail/' + po.id + '" target="js_main_frame">查看处理结果</a></td>'
 						+ '</tr>';
 					tbody.append(tr);
 				}
@@ -39,7 +39,7 @@ eir.po={
 				}
 				pagination.html(paginationHtml);
 			}else{
-				alter("数据加载失败...")
+				alter("数据加载失败...");
 			}
 		});
 	}

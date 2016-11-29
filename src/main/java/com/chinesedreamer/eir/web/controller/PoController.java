@@ -3,6 +3,7 @@ package com.chinesedreamer.eir.web.controller;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,8 +70,9 @@ public class PoController {
 	}
 	
 	
-	@RequestMapping(value="detail")
-	public String poDetail(){
+	@RequestMapping(value="detail/{poId}")
+	public String poDetail(@PathVariable(value="poId")Long poId, Model model){
+		model.addAttribute("poId", poId);
 		return "po/detail";
 	}
 	
@@ -81,8 +83,8 @@ public class PoController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="detail/{poId}")
-	public ResponseVo poDetail(@PathVariable(value="poId")Long poId){
+	@RequestMapping(value="detail/data/{poId}")
+	public ResponseVo poDetailInfo(@PathVariable(value="poId")Long poId){
 		PoDetailVo vo = this.poService.findPoDetail(poId);
 		return ResponseUtil.success(vo);
 	}
