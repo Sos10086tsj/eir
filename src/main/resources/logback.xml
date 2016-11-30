@@ -58,7 +58,7 @@
 	
 	<appender name="PROJECT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${log.root.folder}/crw_sso.log.%d{yyyy-MM-dd}</fileNamePattern>
+			<fileNamePattern>${log.root.folder}/eir.log.%d{yyyy-MM-dd}</fileNamePattern>
 			<maxHistory>15</maxHistory>
 		</rollingPolicy>
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">

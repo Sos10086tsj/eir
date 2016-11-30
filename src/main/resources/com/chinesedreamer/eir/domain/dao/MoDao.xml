@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinesedreamer.eir.domain.dao.MoDao">
+    
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+    	insert into biz_mo
+    	(
+    		mo_file_id,
+    		clothing_type,
+    		manufactory,
+    		status,
+    		create_date,
+    		create_user
+    	)
+    	values
+    	(
+    		#{moFileId,jdbcType=BIGINT},
+    		#{clothingType,jdbcType=VARCHAR,typeHandler=com.chinesedreamer.eir.domain.typehandler.ClothingTypeHandler},
+    		#{manufactory,jdbcType=VARCHAR,typeHandler=com.chinesedreamer.eir.domain.typehandler.MoManufactoryTypeHandler},
+    		#{status,jdbcType=INTEGER,typeHandler=com.chinesedreamer.eir.domain.typehandler.MoStatusTypeHandler},
+    		#{createDate,jdbcType=TIMESTAMP},
+    		#{createUser,jdbcType=BIGINT}
+    	)
+    </insert>
+	
+	<resultMap type="com.chinesedreamer.eir.domain.model.Mo" id="moResultMap">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="file_name" property="poFileName" jdbcType="VARCHAR" />
+		<result column="file_path" property="poFilePath" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" typeHandler="com.chinesedreamer.eir.domain.typehandler.PoStatusTypeHandler"/>
+		<result column="clothing_type" property="clothingType" jdbcType="VARCHAR" typeHandler="com.chinesedreamer.eir.domain.typehandler.ClothingTypeHandler"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	
+</mapper>
+
+

@@ -29,7 +29,9 @@
 	</context:component-scan>
 	
 	<context:annotation-config />
-	<task:annotation-driven />
+	<task:executor id="defaultExecutor" pool-size="5" />
+	<task:scheduler id="defaultScheduler" pool-size="10"/>
+	<task:annotation-driven executor="defaultExecutor" scheduler="defaultScheduler"/>
 	<aop:aspectj-autoproxy />
 	
 	<import resource="datasource-config.xml"/>

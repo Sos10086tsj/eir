@@ -77,7 +77,6 @@
 
 </body>
 <script src="${ctx }/resources/component/jQuery/jquery.min.js"></script>
-<script src="${ctx }/resources/component/AmazeUI-2.7.2/js/echarts.min.js"></script>
 <script src="${ctx }/resources/component/AmazeUI-2.7.2/js/amazeui.min.js"></script>
 <script src="${ctx }/resources/component/AmazeUI-2.7.2/js/iscroll.js"></script>
 <script>

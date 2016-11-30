@@ -106,6 +106,7 @@ public class SessionFilter implements Filter{
 		String uri = httpServletRequest.getServletPath();
 		PropertiesUtil pu = new PropertiesUtil(ApplicationConstant.APPLICATION_PROPERTY_FILE);
 		String loginUrl = pu.getProperty(ApplicationConstant.PROPERTY_SESSION_FILTER_LOGIN_URL);
+		String sessionOverdueUrl = pu.getProperty(ApplicationConstant.PROPERTY_SESSION_OVERDUE_URL);
 		
 		SessionContext.setContextRequest(httpServletRequest);
 		if (StringUtils.isNotEmpty(uri)) {
@@ -125,12 +126,12 @@ public class SessionFilter implements Filter{
 							HttpSession session = httpServletRequest.getSession();
 							if (!session.getId().equals(sessionId)) {
 								logger.info("session not exist of sessionId:{}.",sessionId);
-								request.getRequestDispatcher(loginUrl).forward(request, response);
+								request.getRequestDispatcher(sessionOverdueUrl).forward(request, response);
 								return;
 							}
 						} catch (Exception e) {
 							logger.error("{}",e);
-							request.getRequestDispatcher(loginUrl).forward(request, response);
+							request.getRequestDispatcher(sessionOverdueUrl).forward(request, response);
 							return;
 						}
 						chain.doFilter(request, response);
@@ -141,12 +142,12 @@ public class SessionFilter implements Filter{
 						HttpSession session = httpServletRequest.getSession();
 						if (!session.getId().equals(sessionId)) {
 							logger.info("session not exist of sessionId:{}.",sessionId);
-							request.getRequestDispatcher(loginUrl).forward(request, response);
+							request.getRequestDispatcher(sessionOverdueUrl).forward(request, response);
 							return;
 						}
 					} catch (Exception e) {
 						logger.error("{}",e);
-						request.getRequestDispatcher(loginUrl).forward(request, response);
+						request.getRequestDispatcher(sessionOverdueUrl).forward(request, response);
 						return;
 					}
 					chain.doFilter(request, response);

@@ -3,6 +3,7 @@ package com.chinesedreamer.eir.util;
 import java.text.MessageFormat;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,5 +68,18 @@ public class StringUtil {
 			errorMessage = new ErrorMessage(ErrorMessageCode.SYSTEM.UNEXPECTED_ERROR_MESSAGE_CODE, ErrorMessageCode.SYSTEM.UNEXPECTED_ERROR_MESSAGE_MSG);
 		}
 		return errorMessage;
+	}
+	
+	public static boolean matchKeyWord(String word, String keyWrods) {
+		if (StringUtils.isEmpty(keyWrods) || StringUtils.isEmpty(word)) {
+			return false;
+		}
+		String[] words = keyWrods.split("@@");
+		for (String keyWord : words) {
+			if (word.equalsIgnoreCase(keyWord)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
