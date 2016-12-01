@@ -10,7 +10,9 @@ eir.mo={
 					var tr = '';
 					tr += '<tr>'
 						+ '<td>' + mo.fileName + '</td>'
-						+ '<td>' + eir.format.date(mo.uploadDate,'yyyy-MM-dd') + '</td>'
+						+ '<td>' + mo.clothingType + '</td>'
+						+ '<td>' + mo.manufactory + '</td>'
+						+ '<td>' + eir.format.date(mo.uploadDate,'yyyy-MM-dd hh:mm:ss') + '</td>'
 						+ '<td>' + mo.status + '</td>'
 						+ '<td><a href="' + ctx + '/mo/detail/' + mo.id + '" target="js_main_frame">查看处理结果</a></td>'
 						+ '</tr>';
@@ -46,5 +48,5 @@ eir.mo={
 }
 $(function(){
 	eir.amezeui.file.initSigleFileUpload($('#js_mo_file_input'),$('#js_mo_file_display'));
-//	eir.mo.loadMos();
+	eir.mo.loadMos();
 })

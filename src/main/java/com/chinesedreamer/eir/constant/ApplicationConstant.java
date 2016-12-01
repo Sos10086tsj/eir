@@ -27,5 +27,11 @@ public class ApplicationConstant {
 	public static final String PO_CONFIG_CPQ_PO_KEY_NEW_STYLE = "NEW_STYLE_PATTERN";
 	public static final String PO_CONFIG_CPQ_PO_KEY_OLD_STYLE = "OLD_STYLE_PATTERN";
 	public static final String PO_CONFIG_CPQ_PO_KEY_ITEM_BEGIN = "ITEM_BEGIN";
+	//cpq mo config
+	public static final String PO_CONFIG_TYPE_MO_PARSE = "MO_PARSE";
+	public static final String PO_CONFIG_CATEGORY_MO = "MO_CPQ";
+	public static final String MO_CONFIG_TYPE_JN = "JN";
+	public static final String MO_CONFIG_TYPE_PTM = "PTM";
 	
+	public static final String PO_CONFIG_DELIMITER = "@@";
 }

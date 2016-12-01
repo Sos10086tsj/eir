@@ -13,11 +13,14 @@ import com.chinesedreamer.eir.domain.constant.MoStatus;
 **/
 public class Mo extends BaseModel{
 	private Long moFileId;
+	private String moFileName;
+	private String moFilePath;
 	private ClothingType clothingType;
 	private MoManufactory manufactory;
 	private MoStatus status = MoStatus.WAITING_4_PARSE;
 	private Date createDate = new Date();
 	private Long createUser;
+	
 	public Long getMoFileId() {
 		return moFileId;
 	}
@@ -53,6 +56,18 @@ public class Mo extends BaseModel{
 	}
 	public void setCreateUser(Long createUser) {
 		this.createUser = createUser;
+	}
+	public String getMoFileName() {
+		return moFileName;
+	}
+	public String getMoFilePath() {
+		return moFilePath;
+	}
+	public void setMoFileName(String moFileName) {
+		this.moFileName = moFileName;
+	}
+	public void setMoFilePath(String moFilePath) {
+		this.moFilePath = moFilePath;
 	}
 	
 	

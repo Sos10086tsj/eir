@@ -14,4 +14,5 @@ import com.chinesedreamer.eir.domain.model.PoConfig;
 public interface PoConfigDao {
 	public List<PoConfig> findByType(String type);
 	public List<PoConfig> findByTypeAndCategory(@Param(value="type")String type,@Param(value="category")String category);
+	public PoConfig findByTypeAndCategoryAndKey(@Param(value="type")String type,@Param(value="category")String category,@Param(value="propKey")String propKey);
 }

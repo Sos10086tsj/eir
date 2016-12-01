@@ -34,6 +34,16 @@
 		and category = #{category,jdbcType=VARCHAR}
 		order by sequence
 	</select>
+	
+	<select id="findByTypeAndCategoryAndKey" resultMap="poConfigResultMap">
+		SELECT
+			<include refid="poConfigColumns"/>
+		from
+			biz_po_config
+		where type = #{type,jdbcType=VARCHAR}
+		and category = #{category,jdbcType=VARCHAR}
+		and prop_key = #{propKey,jdbcType=VARCHAR}
+	</select>
 
 </mapper>
 

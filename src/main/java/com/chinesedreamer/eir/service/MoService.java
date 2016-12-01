@@ -1,6 +1,8 @@
 package com.chinesedreamer.eir.service;
 
 import com.chinesedreamer.eir.vo.model.mo.MoVo;
+import com.chinesedreamer.eir.vo.query.MoQueryVo;
+import com.chinesedreamer.eir.vo.query.Pagination;
 
 /**
  * Description:
@@ -9,4 +11,5 @@ import com.chinesedreamer.eir.vo.model.mo.MoVo;
 **/
 public interface MoService {
 	public void saveMo(MoVo vo);
+	public Pagination<MoVo> findMos(MoQueryVo queryVo);
 }

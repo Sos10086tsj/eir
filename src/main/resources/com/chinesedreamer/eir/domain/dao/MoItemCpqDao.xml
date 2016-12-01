@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinesedreamer.eir.domain.dao.MoItemCpqDao">
+	
+	<resultMap type="com.chinesedreamer.eir.domain.model.MoItemCpq" id="moItemCpqResultMap">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="mo_id" property="moId" jdbcType="BIGINT" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="style_no" property="styleNo" jdbcType="VARCHAR" />
+		<result column="color" property="color" jdbcType="VARCHAR"/>
+		<result column="box_from" property="boxFrom" jdbcType="INTEGER"/>
+		<result column="box_to" property="boxTo" jdbcType="INTEGER" />
+		<result column="size_s" property="sizeS" jdbcType="INTEGER" />
+		<result column="size_m" property="sizeM" jdbcType="INTEGER" />
+		<result column="size_l" property="sizeL" jdbcType="INTEGER" />
+		<result column="size_xl" property="sizeXl" jdbcType="INTEGER" />
+		<result column="size_xxl" property="sizeXxl" jdbcType="INTEGER" />
+		<result column="size_p" property="sizeP" jdbcType="INTEGER" />
+		<result column="size_1" property="size1" jdbcType="INTEGER" />
+		<result column="size_2" property="size2" jdbcType="INTEGER" />
+		<result column="size_4" property="size4" jdbcType="INTEGER" />
+		<result column="size_6" property="size6" jdbcType="INTEGER" />
+		<result column="size_8" property="size8" jdbcType="INTEGER" />
+		<result column="size_10" property="size10" jdbcType="INTEGER" />
+		<result column="size_12" property="size12" jdbcType="INTEGER" />
+		<result column="size_14" property="size14" jdbcType="INTEGER" />
+		<result column="size_16" property="size16" jdbcType="INTEGER" />
+		<result column="size_uni_1" property="sizeUni1" jdbcType="INTEGER" />
+		<result column="size_uni_2" property="sizeUni2" jdbcType="INTEGER" />
+		<result column="size_uni_3" property="sizeUni3" jdbcType="INTEGER" />
+		<result column="size_uni_4" property="sizeUni4" jdbcType="INTEGER" />
+		<result column="size_uni_5" property="sizeUni5" jdbcType="INTEGER" />
+		<result column="size_uni_6" property="sizeUni6" jdbcType="INTEGER" />
+		<result column="country" property="country" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		insert into biz_mo_item_cpq
+		(
+			mo_id,
+			order_no,
+			style_no,
+			color,
+			box_from,
+			box_to,
+			size_s,
+			size_m,
+			size_l,
+			size_xl,
+			size_xxl,
+			size_p,
+			size_1,
+			size_2,
+			size_3,
+			size_4,
+			size_6,
+			size_8,
+			size_10,
+			size_12,
+			size_14,
+			size_16,
+			size_uni_1,
+			size_uni_2,
+			size_uni_3,
+			size_uni_4,
+			size_uni_5,
+			size_uni_6,
+			country
+		)values(
+			#{moId,jdbcType=BIGINT},
+			#{orderNo,jdbcType=VARCHAR},
+			#{styleNo,jdbcType=VARCHAR},
+			#{color,jdbcType=VARCHAR},
+			#{boxFrom,jdbcType=INTEGER},
+			#{boxTo,jdbcType=INTEGER},
+			#{sizeS,jdbcType=INTEGER},
+			#{sizeM,jdbcType=INTEGER},
+			#{sizeL,jdbcType=INTEGER},
+			#{sizeXl,jdbcType=INTEGER},
+			#{sizeXxl,jdbcType=INTEGER},
+			#{sizeP,jdbcType=INTEGER},
+			#{size1,jdbcType=INTEGER},
+			#{size2,jdbcType=INTEGER},
+			#{size3,jdbcType=INTEGER},
+			#{size4,jdbcType=INTEGER},
+			#{size6,jdbcType=INTEGER},
+			#{size8,jdbcType=INTEGER},
+			#{size10,jdbcType=INTEGER},
+			#{size12,jdbcType=INTEGER},
+			#{size14,jdbcType=INTEGER},
+			#{size16,jdbcType=INTEGER},
+			#{sizeUni1,jdbcType=INTEGER},
+			#{sizeUni2,jdbcType=INTEGER},
+			#{sizeUni3,jdbcType=INTEGER},
+			#{sizeUni4,jdbcType=INTEGER},
+			#{sizeUni5,jdbcType=INTEGER},
+			#{sizeUni6,jdbcType=INTEGER},
+			#{country,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<delete id="deleteInBatch">
+		delete from biz_mo_item_cpq 
+		where id in 
+			<foreach item="item" index="index" collection="list" 
+                    open="(" separator="," close=")">
+                   #{item}
+            </foreach>
+	</delete>
+	
+	<select id="findByOrderNo" resultMap="moItemCpqResultMap">
+		select * from biz_mo_item_cpq where order_no = #{orderNo,jdbcType=VARCHAR}
+	</select>
+</mapper>
+
+

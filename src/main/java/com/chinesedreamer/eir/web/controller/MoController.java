@@ -11,8 +11,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.chinesedreamer.eir.domain.model.EirFile;
 import com.chinesedreamer.eir.service.FileService;
 import com.chinesedreamer.eir.service.MoService;
+import com.chinesedreamer.eir.util.ResponseUtil;
+import com.chinesedreamer.eir.util.SessionUtil;
 import com.chinesedreamer.eir.vo.model.mo.MoVo;
 import com.chinesedreamer.eir.vo.query.MoQueryVo;
+import com.chinesedreamer.eir.vo.query.Pagination;
 import com.chinesedreamer.eir.vo.response.ResponseVo;
 
 /**
@@ -40,7 +43,9 @@ public class MoController {
 		if (null == queryVo) {
 			queryVo = new MoQueryVo();
 		}
-		return null;
+		queryVo.setCreateUser(SessionUtil.getUserId());
+		Pagination<MoVo> vos = this.moService.findMos(queryVo);
+		return ResponseUtil.success(vos);
 	}
 	
 	@RequestMapping(value="upload")

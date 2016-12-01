@@ -6,5 +6,14 @@ package com.chinesedreamer.eir.vo.query;
 **/
 public class MoQueryVo extends PageVo{
 	
+	private Long createUser;
+
+	public Long getCreateUser() {
+		return createUser;
+	}
+
+	public void setCreateUser(Long createUser) {
+		this.createUser = createUser;
+	}
 	
 }

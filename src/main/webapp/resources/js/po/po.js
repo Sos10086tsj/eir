@@ -10,7 +10,7 @@ eir.po={
 					var tr = '';
 					tr += '<tr>'
 						+ '<td>' + po.fileName + '</td>'
-						+ '<td>' + eir.format.date(po.uploadDate,'yyyy-MM-dd') + '</td>'
+						+ '<td>' + eir.format.date(po.uploadDate,'yyyy-MM-dd hh:mm:ss') + '</td>'
 						+ '<td>' + po.status + '</td>'
 						+ '<td><a href="' + ctx + '/po/detail/' + po.id + '" target="js_main_frame">查看处理结果</a></td>'
 						+ '</tr>';

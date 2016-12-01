@@ -25,14 +25,59 @@
 	
 	<resultMap type="com.chinesedreamer.eir.domain.model.Mo" id="moResultMap">
 		<id column="id" property="id" jdbcType="BIGINT" />
-		<result column="file_name" property="poFileName" jdbcType="VARCHAR" />
-		<result column="file_path" property="poFilePath" jdbcType="VARCHAR" />
-		<result column="status" property="status" jdbcType="INTEGER" typeHandler="com.chinesedreamer.eir.domain.typehandler.PoStatusTypeHandler"/>
+		<result column="file_name" property="moFileName" jdbcType="VARCHAR" />
+		<result column="file_path" property="moFilePath" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" typeHandler="com.chinesedreamer.eir.domain.typehandler.MoStatusTypeHandler"/>
 		<result column="clothing_type" property="clothingType" jdbcType="VARCHAR" typeHandler="com.chinesedreamer.eir.domain.typehandler.ClothingTypeHandler"/>
 		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="manufactory" property="manufactory" jdbcType="VARCHAR" typeHandler="com.chinesedreamer.eir.domain.typehandler.MoManufactoryTypeHandler"/>
 	</resultMap>
 	
+	<select id="findMos" resultMap="moResultMap">
+		select 
+			mo.id, 
+			sef.file_path as file_path,
+			sef.file_name as file_name,
+			mo.clothing_type,
+			mo.manufactory,
+			mo.status,
+			mo.create_date
+		from 
+			biz_mo mo,
+			supp_eir_file sef
+		<where>
+			and mo.mo_file_id = sef.id
+			and mo.create_user = #{createUser,jdbcType=BIGINT}
+		</where>
+		order by mo.create_date desc
+	</select>
 	
+	<select id="findWaitingMos" resultMap="moResultMap">
+		select 
+			mo.id, 
+			sef.file_path as file_path,
+			sef.file_name as file_name,
+			mo.clothing_type,
+			mo.manufactory,
+			mo.status,
+			mo.create_date
+		from 
+			biz_mo mo,
+			supp_eir_file sef
+		<where>
+			and mo.mo_file_id = sef.id
+			and mo.status = 0
+		</where>
+		order by mo.create_date
+	</select>
+	
+	<update id="updateStatus">
+		update biz_mo
+		<set>
+			status = #{status,jdbcType=INTEGER,typeHandler=com.chinesedreamer.eir.domain.typehandler.MoStatusTypeHandler}
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
 </mapper>
 
 

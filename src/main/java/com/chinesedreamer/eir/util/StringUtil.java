@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.chinesedreamer.eir.constant.ApplicationConstant;
 import com.chinesedreamer.eir.exception.ErrorMessage;
 import com.chinesedreamer.eir.exception.ErrorMessageCode;
 import com.chinesedreamer.eir.init.GlobalResource;
@@ -74,7 +75,7 @@ public class StringUtil {
 		if (StringUtils.isEmpty(keyWrods) || StringUtils.isEmpty(word)) {
 			return false;
 		}
-		String[] words = keyWrods.split("@@");
+		String[] words = keyWrods.split(ApplicationConstant.PO_CONFIG_DELIMITER);
 		for (String keyWord : words) {
 			if (word.equalsIgnoreCase(keyWord)) {
 				return true;

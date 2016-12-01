@@ -82,7 +82,9 @@
 		<table class="am-table am-table-bordered am-table-radius am-table-striped am-table-striped am-table-hover" id="js_mo_table">
 			<thead>
 				<tr>
-					<th>PO文件</th>
+					<th>Excel</th>
+					<th>服装</th>
+					<th>工厂</th>
 					<th>上传时间</th>
 					<th>状态</th>
 					<th>操作</th>
