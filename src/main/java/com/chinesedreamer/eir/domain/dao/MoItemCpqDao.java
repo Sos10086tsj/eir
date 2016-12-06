@@ -13,4 +13,5 @@ public interface MoItemCpqDao {
 	public int save(MoItemCpq item);
 	public int deleteInBatch(List<Long> ids);
 	public List<MoItemCpq> findByOrderNo(String orderNo);
+	public List<MoItemCpq> findByMoId(Long moId);
 }

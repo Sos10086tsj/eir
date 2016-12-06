@@ -111,6 +111,11 @@
 	<select id="findByOrderNo" resultMap="moItemCpqResultMap">
 		select * from biz_mo_item_cpq where order_no = #{orderNo,jdbcType=VARCHAR}
 	</select>
+	
+	<select id="findByMoId" resultMap="moItemCpqResultMap">
+		select * from biz_mo_item_cpq where mo_id = #{moId,jdbcType=BIGINT}
+		order by order_no,style_no,color,box_from,box_to
+	</select>
 </mapper>
 
 

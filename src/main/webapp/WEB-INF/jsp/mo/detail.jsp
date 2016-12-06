@@ -24,27 +24,9 @@
 <link rel="stylesheet"
 	href="${ctx }/resources/component/AmazeUI-2.7.2/css/app.css">
 </head>
-<body data-type="poDetail">
+<body data-type="moDetail">
 	<div>
-		<div id="js_po_detail_main">
-<!-- 			<table class="am-table am-table-bordered am-table-radius am-table-striped"> -->
-<!-- 			<thead> -->
-<!--   <tr> -->
-<!--     <th>网站名称</th> -->
-<!--     <th>网址</th> -->
-<!--     <th>创建时间</th> -->
-<!--   </tr> -->
-<!--   </thead> -->
-  
-<!--    <tbody> -->
-<!--   <tr> -->
-<!--     <td>Amaze UI</td> -->
-<!--     <td>http://amazeui.org</td> -->
-<!--     <td>2012-10-01</td> -->
-<!--   </tr> -->
-<!--   </tbody> -->
-  
-<!-- 			</table> -->
+		<div id="js_mo_detail_main">
 		</div>
 	</div>
 </body>
@@ -53,8 +35,8 @@
 <script src="${ctx }/resources/component/AmazeUI-2.7.2/js/iscroll.js"></script>
 <script>
 var ctx = '${ctx}';
-var poId = '${poId}';
+var moId = '${moId}';
 </script>
 <script src="${ctx }/resources/js/eir.js"></script>
-<script src="${ctx }/resources/js/po/poDetail.js"></script>
+<script src="${ctx }/resources/js/mo/moDetail.js"></script>
 </html>

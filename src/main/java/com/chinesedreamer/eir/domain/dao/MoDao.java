@@ -18,4 +18,5 @@ public interface MoDao {
 	public List<Mo> findMos(MoQueryVo queryVo);
 	public List<Mo> findWaitingMos();
 	public int updateStatus(@Param(value="id")Long id, @Param(value="status")MoStatus status);
+	public Mo findById(Long moId);
 }

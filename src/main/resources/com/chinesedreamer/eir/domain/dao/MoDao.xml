@@ -33,6 +33,24 @@
 		<result column="manufactory" property="manufactory" jdbcType="VARCHAR" typeHandler="com.chinesedreamer.eir.domain.typehandler.MoManufactoryTypeHandler"/>
 	</resultMap>
 	
+	<select id="findById" resultMap="moResultMap">
+		select 
+			mo.id, 
+			sef.file_path as file_path,
+			sef.file_name as file_name,
+			mo.clothing_type,
+			mo.manufactory,
+			mo.status,
+			mo.create_date
+		from 
+			biz_mo mo,
+			supp_eir_file sef
+		<where>
+			and mo.mo_file_id = sef.id
+			and mo.id = #{id,jdbcType=BIGINT}
+		</where>
+	</select>
+	
 	<select id="findMos" resultMap="moResultMap">
 		select 
 			mo.id, 
